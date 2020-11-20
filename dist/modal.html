@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket - Resumen venta</title>
+    <style>
+        div {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .title {
+            text-align: center;
+        }
+        table, p {
+            font-size: 0.9rem;
+        }
+        tr td:nth-child(3) {
+            font-weight: 700;
+            text-align: center;
+        }
+        p {
+            line-height: 0.3;
+            text-align: end;
+        }
+    </style>
+</head>
+<body>
+    <div id="ticket"></div>
+
+    <script>
+        const ipcRenderer = require('electron').ipcRenderer;
+        let ticket = document.getElementById('ticket');
+        ipcRenderer.on('ticket', function(event, data) {
+            console.log("\n***********Prueba de datos***********");
+            console.log(data);
+
+            ticket.innerHTML = `
+            <div class="title">
+                <h3><small style="color: gray;">Mary</small>Ventas</h3>
+            </div>
+            <div class="resumen">
+                ${data}
+            </div>
+            `;
+        });
+    </script>
+</body>
+</html>

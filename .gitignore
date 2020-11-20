@@ -1,0 +1,7 @@
+#Ignore modules of node
+node_modules
+dist/bundle.js
+dist/auth-bundle.js
+dist/cashier-bundle.js
+gulpfile.js
+pug

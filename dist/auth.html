@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciando Sesión en MaryVentas App</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const { remote } = require('electron');
+        const appWindow = remote.require('./main/app-main.js');
+        const session = remote.require('./main/services/session-auth.js');
+
+        function headerAuth(headerData) {
+            session.storeSessionTokenHandler(headerData.access_token);
+            appWindow.createAppWindow();
+            remote.getCurrentWindow().close();
+        }
+    </script>
+    <script src="auth-bundle.js"></script>
+</body>
+</html>
